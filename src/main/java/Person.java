@@ -10,7 +10,7 @@ public class Person {
     private String middleName;
     private List<Person> children = new ArrayList<Person>();
     private List<Person> grandchildren = new ArrayList<Person>();
-    private List<Person> pets = new ArrayList<Person>();
+    private List<Pet> pets = new ArrayList<Pet>();
     private List<Person> siblings = new ArrayList<Person>();
     private Person mother;
     private Person father;
@@ -84,11 +84,11 @@ public class Person {
     public void setChildren(List<Person> children) {
         this.children = children;
     }
-    public List<Person> getPets() {
+    public List<Pet> getPets() {
         return pets;
     }
 
-    public void setPets(List<Person> pets) {
+    public void setPets(List<Pet> pets) {
         this.pets = pets;
     }
     public List<Person> getSiblings() {
@@ -126,8 +126,9 @@ public class Person {
         children.add(child);
         }
 
-    public void addPet(Person pet) {
+    public void addPet(Pet pet) {
         pets.add(pet);
+//        pet.setOwner(person, pet);
     }
 
     public void addSibling(Person sibling) {
@@ -139,6 +140,7 @@ public class Person {
         for (int i = 0; i < children.toArray().length; i++) {
          if (children.get(i) != null) {
              grandchildren.addAll(children.get(i).children);
+
          }
 
         }
@@ -147,9 +149,25 @@ public class Person {
 
     }
 
-    public void setGrandchildren(List<Person> grandchildren) {
-        this.grandchildren = grandchildren;
+    //BONUS 1
+    public List<Pet> getGrandchildrenPets() {
+        for (int i = 0; i < getGrandchildren().toArray().length; i++) {
+            if (getGrandchildren().get(i) != null) {
+                pets.addAll(getGrandchildren().get(i).getPets());
+
+            }
+        }
+
+        return pets;
+
     }
+        //
+
+
+
+//    public void setGrandchildren(List<Person> grandchildren) {
+//        this.grandchildren = grandchildren;
+//    }
 
 
 

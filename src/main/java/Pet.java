@@ -42,6 +42,8 @@ public class Pet {
     }
 
     public void setOwner(Person owner) {
+
         this.owner = owner;
+        //owner.getPets().add(pet);
     }
 }

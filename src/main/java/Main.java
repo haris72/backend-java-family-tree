@@ -1,4 +1,4 @@
-
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,17 +18,40 @@ public class Main {
         person1.addChild(person3);
         person2.addChild(person4);
         person2.addChild(person5);
-        person4.addChild(person6);
+        person3.addChild(person6);
 
 
         Pet pet1 = new Pet("Micky", 2, "hondje");
         Pet pet2 = new Pet("Roksy", 3, "kat");
+        Pet pet3 = new Pet("Rocky", 1, "konijn");
 
-        pet1.setOwner(person7);
-        System.out.println("De eigenaar van" + " een " + pet1.getSpecies() +  " " + pet1.getName() + " is " + pet1.getOwner().getName());
+
+        pet1.setOwner(person5);
+        person5.addPet(pet2);
+        person5.addPet(pet1);
+
+        pet3.setOwner(person6);
+        person6.addPet(pet3);
+
+
+        System.out.println("De eigenaar van" + " een " + pet2.getSpecies() + " " + pet2.getName() + " is " + person5.getName());
+        System.out.println("De eerste pet van " + person5.getName() + " is " + pet2.getSpecies() + " " + person5.getPets().getFirst().getName());
+        System.out.println("De eerste pet van " + person6.getName() + " is " + person6.getPets().getFirst().getSpecies() + " " + person6.getPets().getFirst().getName());
 
         person1.addParents (person7, person8) ;
         System.out.println(person1.getName() + " ouders zijn " + person7.getName() + " en " + person8.getName());
+        System.out.println("Mama " + "van " + person1.getName() + " heet " + person1.getMother().getName());
+
+        // BONUS 1
+        String pets = "";
+        for (Pet pet : person5.getGrandchildrenPets()) {
+            pets = pets.concat(pet.getName() + " en ");
+
+        }
+        pets = pets.substring(0, pets.length() - 4);
+        System.out.println("De dieren van de kleinkinderen van "  + person5.getName() + " zijn " + pets);
+
+        //
 
         person1.addSibling(person9);
 
@@ -64,13 +87,13 @@ public class Main {
 
         String kleinkinderen1 = "";
 
-        for (Person person : person7.getGrandchildren()){
+        for (Person person : person1.getGrandchildren()){
             kleinkinderen1 = kleinkinderen1.concat(person.getName() + " en ");
 
         }
 
         kleinkinderen1 = kleinkinderen1.substring(0, kleinkinderen1.length() - 4);
-        System.out.println("De kleinkinderen van " + person7.getName() + " : " + kleinkinderen1);
+        System.out.println("De kleinkinderen van " + person1.getName() + " : " + kleinkinderen1);
 
 
     }
